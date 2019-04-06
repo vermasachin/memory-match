@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-width: 800px;
+  margin: 0 auto
+}
+
+.App h1 {
+  display: block;
+  width: 100%;
+  text-align: center
+}
+
+.flip-container {
+  perspective: 320px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  background: linear-gradient(135deg, #CE9FFC 0%, #7367F0 100%);
+  border-radius: 8px;
+  margin: 1%;
+}
+
+/* .flip-container:hover .flipper, .flip-container.hover .flipper {
+  transform: rotateY(180deg);
+} */
+
+.flip-container, .front, .back {
+  flex: 1 0 21%;
+  height: 200px;
+  width: 100%;
+}
+
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flipper.selected {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.back img {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
