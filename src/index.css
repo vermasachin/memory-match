@@ -28,9 +28,7 @@ code {
   perspective: 320px;
   color: #fff;
   font-weight: 700;
-  font-size: 20px;
-  background: linear-gradient(135deg, #CE9FFC 0%, #7367F0 100%);
-  border-radius: 8px;
+  font-size: 60px;
   margin: 1%;
 }
 
@@ -62,20 +60,15 @@ code {
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 8px;
 }
 
 .front {
+  background: linear-gradient(135deg, #CE9FFC 0%, #7367F0 100%);
   z-index: 2;
   transform: rotateY(0deg);
 }
 
 .back {
   transform: rotateY(180deg);
-}
-
-.back img {
-  max-height: 100%;
-  max-width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class App extends React.Component {
       cards: [],
       openCards: [],
       clearedCards: [],
-      score: 0
+      clicks: 0
     };
   }
 
@@ -27,12 +27,22 @@ class App extends React.Component {
     this.setState({ cards, score: 0 });
   };
 
+  // TODO
+
   handleCardClick = card => {
     const { openCards } = this.state;
-
-    this.setState({ openCards: [...openCards, card] }, () =>
-      this.matchCards(card)
-    );
+    if (
+      openCards.some(cardOpen => cardOpen.id !== card.id) ||
+      openCards.length < 1
+    ) {
+      this.setState(
+        prevState => ({
+          openCards: [...openCards, card],
+          clicks: prevState.clicks + 1
+        }),
+        () => this.matchCards(card)
+      );
+    }
   };
 
   matchCards = () => {
@@ -64,11 +74,12 @@ class App extends React.Component {
   };
 
   render() {
-    if (this.state.score === 6)
+    if (this.state.cards.every(card => card.matched))
       return (
-        <>
+        <div className="App">
+          <p>It took you {this.state.clicks} clicks to solve the grid.</p>
           <button onClick={this.restart}>Restart</button>
-        </>
+        </div>
       );
     return (
       <div className="App">
@@ -88,26 +99,22 @@ class App extends React.Component {
 }
 
 function Card(props) {
+  const checkMatched =
+    (props.openCards[0] && props.openCards[0].id === props.card.id) ||
+    (props.openCards[1] && props.openCards[1].id === props.card.id) ||
+    props.card.matched;
+
   return (
     <>
       <div className="flip-container">
         <div
-          className={`flipper ${((props.openCards[0] &&
-            props.openCards[0].id === props.card.id) ||
-            (props.openCards[1] && props.openCards[1].id === props.card.id) ||
-            props.card.matched) &&
-            'selected'}`}
+          className={`flipper ${checkMatched && 'selected'}`}
           onClick={() => props.handleCardClick(props.card)}
         >
           <div className="front" />
 
-          <div className="back">
-            <img
-              alt="match"
-              src={`https://picsum.photos/184/200?image=${1}${
-                props.card.value
-              }`}
-            />
+          <div className="back" style={{ color: 'black' }}>
+            {props.card.value}
           </div>
         </div>
       </div>
