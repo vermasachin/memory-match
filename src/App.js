@@ -1,5 +1,13 @@
 import React from 'react';
 
+// TODO
+/*
+  - Add github link
+  - Improve design
+  - Use images instead of numbrs
+  - Use hooks
+*/
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -82,18 +90,26 @@ class App extends React.Component {
         </div>
       );
     return (
-      <div className="App">
-        <h1>Flip Card</h1>
-        {this.state.cards.map(card => (
-          <Card
-            key={card.id}
-            card={card}
-            handleCardClick={this.handleCardClick}
-            openCards={this.state.openCards}
-            arr={this.state.clearedCards}
-          />
-        ))}
-      </div>
+      <>
+        <div className="App">
+          <h1>Flip Card</h1>
+          {this.state.cards.map(card => (
+            <Card
+              key={card.id}
+              card={card}
+              handleCardClick={this.handleCardClick}
+              openCards={this.state.openCards}
+              arr={this.state.clearedCards}
+            />
+          ))}
+        </div>
+        <a
+          className="github"
+          href="https://github.com/vermasachin/memory-match"
+        >
+          Github
+        </a>
+      </>
     );
   }
 }

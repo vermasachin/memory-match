@@ -72,3 +72,10 @@ code {
 .back {
   transform: rotateY(180deg);
 }
+
+.github {
+  font-weight: 700;
+  text-align: center;
+  display: block;
+  font-size: 18px;
+}
