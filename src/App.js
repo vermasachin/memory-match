@@ -32,7 +32,7 @@ class App extends React.Component {
     );
 
     const cards = array.sort((a, b) => 0.5 - Math.random());
-    this.setState({ cards, score: 0 });
+    this.setState({ cards, clicks: 0 });
   };
 
   // TODO
@@ -68,8 +68,7 @@ class App extends React.Component {
                     ? { ...card, matched: true }
                     : card
                 ),
-                openCards: [],
-                score: this.state.score + 1
+                openCards: []
               }),
             500
           )
